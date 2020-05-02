@@ -1,0 +1,27 @@
+version: "3.4"
+services:
+  graphql-opensanca:
+    image: graphql-opensanca-api
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ".:/app"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:9.6-alpine
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379"
