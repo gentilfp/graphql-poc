@@ -12,19 +12,19 @@ ENV RAILS_LOG_TO_STDOUT true
 WORKDIR /app
 EXPOSE $PORT
 
-# COPY Gemfile .
-# COPY Gemfile.lock .
+COPY Gemfile .
+COPY Gemfile.lock .
 
 ARG BUILD_PACKAGES="build-base g++ gcc make git"
 RUN gem install bundler && \
     apk update && \
     apk add --update --no-cache libxslt-dev ${BUILD_PACKAGES} postgresql-dev less \
     jq nginx tzdata curl openssl tar && \
+    bundle install && \
+    bundle config build.nokogiri --use-system-libraries && \
+    bundle config --global --jobs `expr $(grep processor /proc/cpuinfo | wc -l) - 1` && \
+    apk del ${BUILD_PACKAGES} && \
     rm -r /var/cache/apk/*
-    # bundle install && \
-    # bundle config build.nokogiri --use-system-libraries && \
-    # bundle config --global --jobs `expr $(grep processor /proc/cpuinfo | wc -l) - 1` && \
-    # apk del ${BUILD_PACKAGES}
 
 COPY . /app/
 

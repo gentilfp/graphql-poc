@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV['DATABASE_HOST'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  pool: <%= ENV.fetch("DB_POOL") { 5 } %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME") { 'synergy_development' } %>
+
+test:
+  <<: *default
+  database: 'synergy_test'
+
+production:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME") { 'synergy_production' } %>
