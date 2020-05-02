@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  root to: proc { [200, { '' }, ['']] }
+  post "/graphql", to: "graphql#execute"
+  root to: proc { [200, {}, ['']] }
 end
