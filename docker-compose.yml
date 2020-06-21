@@ -1,7 +1,7 @@
 version: "3.4"
 services:
-  graphql-opensanca:
-    image: graphql-opensanca-api
+  graphql-poc:
+    image: graphql-poc-api
     build:
       context: .
     ports:
