@@ -1,1 +1,4 @@
-my_query: 'hello world'
+queries:
+  - get_price:
+      type: 'String'
+      value: 'foo bar'
