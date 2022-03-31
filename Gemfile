@@ -9,7 +9,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'ddtrace', '~> 0.23.2'
 gem 'graphql', '~> 1.9', '>= 1.9.11'
 gem 'pg', '~> 0.18.4'
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3'
 gem 'rack-cors'
 gem 'rails', '~> 6.0', '>= 6.0.2'
 gem 'rails-healthcheck', '~> 1.0', '>= 1.0.4'
